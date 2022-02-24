@@ -1,7 +1,11 @@
 #Escaneo de puertos activos en la red
 #
 # Determinando gateway
-$subred = (Get-NetRoute -DestinationPrefix 0.0.0.0/0).NextHop
+#
+## En caso de tener dos puntos de acceso de red (osea dos gateways)
+## Determinar los diferentes geteways listando la table de ruteo con el cmdlet Get-NetRoute
+## una vez determinado el Index, ajustar el valor de $subred así
+$subred = (Get-NetRoute -DestinationPrefix 0.0.0.0/0 -IfIndex 13).NextHop
 Write-Host "==Determinando tu gateway..."
 Write-Host "Tu gateway: $subred"
 #
